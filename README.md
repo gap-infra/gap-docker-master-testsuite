@@ -12,3 +12,6 @@ packages, and with all packages loaded, using the GAP Docker container for
 the master branch with packages from the `packages-master.tar.gz` archive.
 
 This is Travis CI cron job, scheduled to run daily.
+
+For the full list of all publicly available tests from the GAP test suite
+see https://github.com/gap-system/gap-distribution/blob/master/README.md
