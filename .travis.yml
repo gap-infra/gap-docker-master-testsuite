@@ -1,10 +1,12 @@
-sudo: required
-
 language: c
 
 branches:
   only:
     - master
+
+env:
+  global:
+    - GAPCONTAINER="gapsystem/gap-docker-master"
 
 matrix:
   include:
@@ -33,11 +35,11 @@ services:
   - docker
 
 before_install:
-- docker pull gapsystem/gap-docker-master
+  - docker pull ${GAPCONTAINER}
 
 script:
-    - docker version
-    - docker run -v $PWD:/home/gap/travis/ gapsystem/gap-docker-master /bin/sh -c "TEST_SUITE=${TEST_SUITE} GAPPKG=${GAPPKG} TERM=dumb LANG=en_GB.UTF-8 /home/gap/travis/ci.sh"
+  - docker version
+  - docker run -v $PWD:/home/gap/travis/ ${GAPCONTAINER} /bin/sh -c "TEST_SUITE=${TEST_SUITE} GAPPKG=${GAPPKG} TERM=dumb LANG=en_GB.UTF-8 /home/gap/travis/ci.sh"
 
 notifications:
   slack:
